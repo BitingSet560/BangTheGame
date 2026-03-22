@@ -3,21 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jugador
+public class Jugador : MonoBehaviour
 {
     public Rol rol;
     public int balas;
-    public List<Flecha> flechas;
-    public Personaje personaje;
-    public int vida;
-    public Utilitarios utilitarios;
+    public string nombre;
+    //public List<Flecha> flechas;
+    //public Personaje personaje;
+    //public Utilitarios utilitarios; // Separar responsabilidades *Pendiente*
 
     void Start()
     {
-        personaje = utilitarios.asignarPersonaje();
-        vida = personaje.vidaMaxima;
-        flechas.Clear();
-        rol.equipo = rol.getRol();
+/*        personaje = utilitarios.asignarPersonaje();
+        balas = personaje.vidaMaxima;
+        flechas.Clear();*/
         
     }
     void Update()
@@ -125,10 +124,9 @@ public class Utilitarios
 }
 public class Rol
 {
-    public string mombre;
-    public Habilidades habilidad;
-    public int equipo; // 1. Policias, 2. Foragidos, 3. Renegados  
+    public string nombre { get; set; }
 
+    // public Habilidades habilidad;
     public int getRol()
     {
         System.Random numeroRandom = new System.Random();
