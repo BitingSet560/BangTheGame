@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 733ee73140a4f744fb5e884296a3005b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - inputNombre: {instanceID: 0}
+  - btnAgregar: {instanceID: 0}
+  - btnIniciar: {instanceID: 0}
+  - content: {instanceID: 0}
+  - jugadorPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
