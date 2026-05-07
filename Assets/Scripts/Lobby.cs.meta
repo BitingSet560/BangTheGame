@@ -8,7 +8,7 @@ MonoImporter:
   - btnAgregar: {instanceID: 0}
   - btnIniciar: {instanceID: 0}
   - content: {instanceID: 0}
-  - jugadorPrefab: {instanceID: 0}
+  - jugadorPrefab: {fileID: 3756891147962426121, guid: d998af4f95cde8b41926e95f7efaf107, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
