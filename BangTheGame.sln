@@ -1,20 +1,22 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{33AEB07D-83F7-27DB-010E-0E9B743F290D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro", "Unity.TextMeshPro.csproj", "{67DFB1FD-FB2B-4072-22ED-A8E23AC8B724}"
 EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{33AEB07D-83F7-27DB-010E-0E9B743F290D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33AEB07D-83F7-27DB-010E-0E9B743F290D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33AEB07D-83F7-27DB-010E-0E9B743F290D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33AEB07D-83F7-27DB-010E-0E9B743F290D}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-EndGlobal
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.TestRunner", "UnityEngine.TestRunner.csproj", "{1A53C78D-AFD5-4FC4-336C-FBBE1D9593F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEditor.TestRunner", "UnityEditor.TestRunner.csproj", "{9D3F6FE6-FDBB-D2FA-EC43-E189B1493247}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI", "UnityEngine.UI.csproj", "{D3E719B5-9AB7-1BA3-F6B3-98058C866280}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro.Editor", "Unity.TextMeshPro.Editor.csproj", "{E84D8953-7139-3806-D4D5-F00CDB772E3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{06DD3D54-16BF-43EA-368C-C39FF96E6D5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEditor.UI", "UnityEditor.UI.csproj", "{C839BEB1-1896-6237-7BDE-26C490BF249A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.VisualStudio.Editor", "Unity.VisualStudio.Editor.csproj", "{788C3D4E-104E-A3A4-82F3-E3E75B413888}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{D475063D-F6F7-6640-A057-743D39C7D5B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antigravity.Ide.Editor", "Antigravity.Ide.Editor.csproj", "{F178E17F-A1CE-A8AC-0D91-8349575B8BC5}"
+EndProject

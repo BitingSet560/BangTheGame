@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class LobbyManager : MonoBehaviour
@@ -55,6 +56,12 @@ public class LobbyManager : MonoBehaviour
 
         var ui = item.GetComponent<JugadorItemUI>();
 
+        if (ui == null)
+        {
+            Debug.LogError($"[LobbyManager] El prefab '{jugadorPrefab.name}' no tiene el componente JugadorItemUI. Agrégalo desde el Inspector.", item);
+            return;
+        }
+
         ui.Configurar(jugador.nombre, () =>
         {
             jugadores.Remove(jugador);
@@ -70,13 +77,30 @@ public class LobbyManager : MonoBehaviour
             return;
         }
 
-        FindObjectOfType<Regla>().AsignarRoles(jugadores);
+        // Asignar roles a los jugadores
+        Regla regla = FindFirstObjectByType<Regla>();
+        if (regla == null)
+        {
+            regla = gameObject.AddComponent<Regla>();
+        }
+        regla.AsignarRoles(jugadores);
 
-        Debug.Log("Partida iniciada");
+        if (GameManager.Instance == null)
+        {
+            GameObject gm = new GameObject("GameManager");
+            gm.AddComponent<GameManager>();
+        }
 
+        GameManager.Instance.jugadores   = jugadores;
+        GameManager.Instance.rondaActual = 1;
+        GameManager.Instance.indiceTurno = 0;
         foreach (var j in jugadores)
         {
             Debug.Log($"{j.nombre} → {j.rol.nombre}");
+            DontDestroyOnLoad(j.gameObject);
         }
+
+        // Cargar la escena de partida
+        SceneManager.LoadScene("Game");
     }
 }
