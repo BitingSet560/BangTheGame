@@ -6,7 +6,7 @@ using UnityEngine;
 public class Jugador : MonoBehaviour
 {
     public Rol rol;
-    public int balas;
+    public int vidaActual;
     public string nombre;
     //public List<Flecha> flechas;
     //public Personaje personaje;
@@ -15,7 +15,7 @@ public class Jugador : MonoBehaviour
     void Start()
     {
 /*        personaje = utilitarios.asignarPersonaje();
-        balas = personaje.vidaMaxima;
+        vidaActual = personaje.vidaMaxima;
         flechas.Clear();*/
         
     }
@@ -23,7 +23,39 @@ public class Jugador : MonoBehaviour
     {
         
     }
+    public void RecibirDanio(int cantidad)
+    {
+        vidaActual -= cantidad;
 
+        if (vidaActual < 0)
+            vidaActual = 0;
+
+        Debug.Log(
+            $"{nombre} recibe {cantidad} de daño. " +
+            $"Vida restante: {vidaActual}"
+        );
+
+        if (vidaActual <= 0)
+        {
+            Morir();
+        }
+    }
+
+
+    public void Curar(int cantidad)
+    {
+        vidaActual += cantidad;
+
+        Debug.Log(
+            $"{nombre} recupera {cantidad} de vida."
+        );
+    }
+
+
+    private void Morir()
+    {
+        Debug.Log($"{nombre} ha muerto.");
+    }
 }
 
 public class Utilitarios

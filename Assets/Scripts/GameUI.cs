@@ -131,7 +131,7 @@ public class GameUI : MonoBehaviour
                 offsetMax:   new Vector2(-6f,0f));
 
             // HP (balas)
-            int hp = jugador.balas > 0 ? jugador.balas : (esSheriff ? 5 : 4);
+            int hp = jugador.vidaActual > 0 ? jugador.vidaActual : (esSheriff ? 5 : 4);
             string hpStr = new string('●', hp) + new string('○', Mathf.Max(0, 9 - hp));
             CrearTextoHijo("TxtHP", card.transform,
                 hpStr,
@@ -150,14 +150,13 @@ public class GameUI : MonoBehaviour
 
     void OnTerminarTurno()
     {
-        GameManager.Instance.SiguienteTurno();
+        if (TurnoManager.Instance == null)
+        {
+            Debug.LogError("TurnoManager no encontrado.");
+            return;
+        }
 
-        var panelDados = FindObjectOfType<PanelDadosUI>();
-        panelDados?.ResetearParaNuevoTurno();
-
-        ActualizarHeader();
-        CrearTarjetasJugadores();
-        AgregarLog($"► Turno de {GameManager.Instance.JugadorActual?.nombre}");
+        TurnoManager.Instance.ResolverDadosFinales();
     }
 
     // HELPERS

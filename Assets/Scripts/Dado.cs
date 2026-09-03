@@ -29,10 +29,13 @@ public class Dado
 
     public SimboloDado Lanzar(System.Random rng)
     {
-        if (EstaBloqueado) return Resultado;
+        if (EstaBloqueado)
+            return Resultado;
 
-        int cara   = rng.Next(0, 5);   // 0 a 4 inclusive
-        Resultado  = (SimboloDado)cara;
+        SimboloDado[] caras = SimboloDadoExtensions.GetCarasEstandar();
+
+        Resultado = caras[rng.Next(caras.Length)];
+
         return Resultado;
     }
 
