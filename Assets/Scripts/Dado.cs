@@ -12,6 +12,9 @@ public class Dado
     // Indica el bloque del dado
     public bool EstaBloqueado { get; private set; }
 
+    // Indica si el dado esta bloqueado por una regla
+    public bool BloqueadoPorRegla { get; private set; }
+
     // Indica si el dado está siendo animado
     public bool EstaAnimando { get; private set; }
 
@@ -40,13 +43,30 @@ public class Dado
     }
 
     // Alterna el estado de bloqueo del dado.
-    public void AlternarBloqueo()
+    public bool AlternarBloqueo()
     {
+        if (BloqueadoPorRegla)
+            return false;
+
         EstaBloqueado = !EstaBloqueado;
+
+        return true;
+    }
+    // Bloquear dado por reglas
+    public void BloquearPorRegla()
+    {
+        EstaBloqueado = true;
+        BloqueadoPorRegla = true;
     }
 
     // Bloquea el dado
-    public void Bloquear() => EstaBloqueado = true;
+    public void Bloquear()
+    {
+        if (BloqueadoPorRegla)
+            return;
+
+        EstaBloqueado = true;
+    }
 
     // Desbloquea el dado
     public void Desbloquear() => EstaBloqueado = false;
@@ -62,6 +82,7 @@ public class Dado
     {
         EstaBloqueado  = false;
         EstaAnimando   = false;
+        BloqueadoPorRegla = false;
         Resultado      = SimboloDado.Default;
     }
 

@@ -21,6 +21,7 @@ public class GestorDados : MonoBehaviour
     public event Action OnAntesDetirar;
     public event Action<Dado[]> OnDadosResueltos;
     public event Action<Dado> OnDadoBloqueoCambiado;
+    public event Action<Dado[]> OnTiradaFinalizada;
 
     public event Action<int> OnLanzamientosRestantesCambiado;
 
@@ -78,8 +79,15 @@ public class GestorDados : MonoBehaviour
         if (EstaAnimando)                return false;
         if (indiceDado < 0 || indiceDado >= TOTAL_DADOS) return false;
 
-        Dados[indiceDado].AlternarBloqueo();
-        OnDadoBloqueoCambiado?.Invoke(Dados[indiceDado]);
+        bool cambio = Dados[indiceDado].AlternarBloqueo();
+
+        if (!cambio)
+            return false;
+
+        OnDadoBloqueoCambiado?.Invoke(
+            Dados[indiceDado]
+        );
+
         return true;
     }
 
@@ -147,8 +155,28 @@ public class GestorDados : MonoBehaviour
 
         EstaAnimando = false;
 
+        // Actualiza la UI con los resultados finales
         OnDadosResueltos?.Invoke(Dados);
-        OnLanzamientosRestantesCambiado?.Invoke(LanzamientosRestantes);
+
+        // Notifica que esta tirada terminó completamente
+        OnTiradaFinalizada?.Invoke(Dados);
+
+        OnLanzamientosRestantesCambiado?.Invoke(
+            LanzamientosRestantes
+        );
+    }
+
+    public void BloquearPorRegla(int indiceDado)
+    {
+        if (indiceDado < 0 ||
+            indiceDado >= TOTAL_DADOS)
+            return;
+
+        Dados[indiceDado].BloquearPorRegla();
+
+        OnDadoBloqueoCambiado?.Invoke(
+            Dados[indiceDado]
+        );
     }
 
     public void DebugMostrarEstado()

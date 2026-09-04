@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\JugadorItemUI.cs" />
     <Compile Include="Assets\Scripts\Lobby.cs" />
     <Compile Include="Assets\Scripts\PanelDadosUI.cs" />
+    <Compile Include="Assets\Scripts\GestorFlechas.cs" />
     <Compile Include="Assets\Scripts\Regla.cs" />
     <Compile Include="Assets\Scripts\GameUI.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />

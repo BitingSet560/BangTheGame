@@ -8,7 +8,7 @@ public class Jugador : MonoBehaviour
     public Rol rol;
     public int vidaActual;
     public string nombre;
-    //public List<Flecha> flechas;
+    public int flechas;
     //public Personaje personaje;
     //public Utilitarios utilitarios; // Separar responsabilidades *Pendiente*
 
@@ -47,7 +47,8 @@ public class Jugador : MonoBehaviour
         vidaActual += cantidad;
 
         Debug.Log(
-            $"{nombre} recupera {cantidad} de vida."
+            $"{nombre} recupera {cantidad} de vida. " +
+            $"Vida actual: {vidaActual}"
         );
     }
 

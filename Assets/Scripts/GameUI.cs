@@ -31,6 +31,18 @@ public class GameUI : MonoBehaviour
 
         InicializarUI();
         if (btnTerminar != null) btnTerminar.onClick.AddListener(OnTerminarTurno);
+        
+        if (TurnoManager.Instance != null)
+            TurnoManager.Instance.OnTurnoFinalizado += ActualizarDespuesDeTurno;
+    }
+
+    private void OnDestroy()
+    {
+        if (btnTerminar != null)
+            btnTerminar.onClick.RemoveListener(OnTerminarTurno);
+
+        if (TurnoManager.Instance != null)
+            TurnoManager.Instance.OnTurnoFinalizado -= ActualizarDespuesDeTurno;
     }
 
     // INICIALIZACIÓN
@@ -187,5 +199,18 @@ public class GameUI : MonoBehaviour
         txt.font      = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         txt.horizontalOverflow = HorizontalWrapMode.Overflow;
         txt.verticalOverflow   = VerticalWrapMode.Overflow;
+    }
+
+    private void ActualizarDespuesDeTurno()
+    {
+        var panelDados = FindObjectOfType<PanelDadosUI>();
+        panelDados?.ResetearParaNuevoTurno();
+
+        ActualizarHeader();
+        CrearTarjetasJugadores();
+
+        AgregarLog(
+            $"► Turno de {GameManager.Instance.JugadorActual?.nombre}"
+        );
     }
 }

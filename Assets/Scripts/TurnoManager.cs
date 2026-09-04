@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TurnoManager : MonoBehaviour
 {
     public static TurnoManager Instance { get; private set; }
 
+    public Jugador jugadorActual;
+
     private Dictionary<SimboloDado, int> resultados;
 
     private bool resolviendo;
+
+    public event Action OnTurnoFinalizado;
 
     private void Awake()
     {
@@ -97,19 +102,7 @@ public class TurnoManager : MonoBehaviour
         // 3. FLECHAS
         // =========================
 
-        int cantidadFlechas =
-            resultados[SimboloDado.Flecha];
-
-        if (cantidadFlechas > 0)
-        {
-            ResolverFlechas(
-                jugadorActual,
-                cantidadFlechas
-            );
-
-            yield return new WaitForSeconds(1f);
-        }
-
+        // Las flechas se resuelven inmediatamente despues de cada lanzamiento de dados :D (Consultar el gestor de flechas)    
 
         // =========================
         // 4. BANG
@@ -179,16 +172,23 @@ public class TurnoManager : MonoBehaviour
         Jugador jugadorActual,
         int cantidad)
     {
+        if (GestorFlechas.Instance == null)
+        {
+            Debug.LogError(
+                "GestorFlechas no encontrado."
+            );
+            return;
+        }
+
+        GestorFlechas.Instance.TomarFlechas(
+            jugadorActual,
+            cantidad
+        );
+
         Debug.Log(
             $"{jugadorActual.nombre} obtiene " +
             $"{cantidad} flecha(s)."
         );
-
-        // Próximamente:
-        // GestorFlechas.Instance.TomarFlechas(
-        //     jugadorActual,
-        //     cantidad
-        // );
     }
 
 
@@ -196,7 +196,7 @@ public class TurnoManager : MonoBehaviour
     {
         GameManager.Instance.SiguienteTurno();
 
-        GestorDados.Instance.IniciarNuevoTurno();
+        OnTurnoFinalizado?.Invoke();
 
         Debug.Log(
             $"Turno de: " +
